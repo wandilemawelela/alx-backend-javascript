@@ -1,12 +1,14 @@
 export default function createIteratorObject(report) {
-  // Get all employees from the report's allEmployees object
-  const allEmployees = report.allEmployees;
+  // Use object destructuring to get allEmployees from the report
+  const { allEmployees } = report;
 
   // Create a generator function to yield each employee
   function* employeeIterator() {
     for (const department in allEmployees) {
-      for (const employee of allEmployees[department]) {
-        yield employee; // Yield each employee
+      if (Object.prototype.hasOwnProperty.call(allEmployees, department)) {
+        for (const employee of allEmployees[department]) {
+          yield employee; // Yield each employee
+        }
       }
     }
   }
@@ -14,4 +16,3 @@ export default function createIteratorObject(report) {
   // Return the generator function as an iterator
   return employeeIterator();
 }
-
