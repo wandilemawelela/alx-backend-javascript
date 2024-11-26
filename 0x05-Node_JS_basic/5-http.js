@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Helper function to read the database file and parse its content
-function readDatabase(databasePath) {
+function readDatabase (databasePath) {
   return new Promise((resolve, reject) => {
     fs.readFile(databasePath, 'utf8', (err, data) => {
       if (err) {
